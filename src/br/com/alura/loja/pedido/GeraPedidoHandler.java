@@ -11,19 +11,18 @@ public class GeraPedidoHandler {
 
     //construtor com injecao de dependencias: repository, service etc.
 
-    private List<AcaoAposGerarPedido> acoes;
+    private List<AcaoAposGerarPedido> acoesAposGerarPedido;
 
-    public GeraPedidoHandler(List<AcaoAposGerarPedido> acoes) {
-        this.acoes = acoes;
+    public GeraPedidoHandler(List<AcaoAposGerarPedido> acaoAposGerarPedidos) {
+        this.acoesAposGerarPedido = acaoAposGerarPedidos;
     }
 
-    public void execute(GeraPedido dados) {
+    public void executar(GeraPedido dados) {
         Orcamento orcamento = new Orcamento();
         orcamento.adicionarItem(new ItenOrcamento(dados.getValorOrcamento()));
-
         Pedido pedido = new Pedido(dados.getCliente(), LocalDateTime.now(), orcamento);
 
-        acoes.forEach(a -> a.executarAcao(pedido));
+        acoesAposGerarPedido.forEach(a -> a.executarAcao(pedido));
     }
 
 }
