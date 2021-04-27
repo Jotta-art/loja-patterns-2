@@ -22,7 +22,7 @@ public class GeraPedidoHandler {
         orcamento.adicionarItem(new ItenOrcamento(dados.getValorOrcamento()));
         Pedido pedido = new Pedido(dados.getCliente(), LocalDateTime.now(), orcamento);
 
-        acoesAposGerarPedido.forEach(a -> a.executarAcao(pedido));
+        this.acoesAposGerarPedido.forEach(a -> a.executarAcao(pedido));
     }
 
 }
